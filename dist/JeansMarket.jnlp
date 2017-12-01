@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="JeansMarket.jnlp">
+  <information>
+    <title>JeansMarket</title>
+    <vendor>prit</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="lib\JeansMarket-Preloader.jar" size="3065" download="progress" />
+    <jar href="JeansMarket.jar" size="510812" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="JeansMarket" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="jeansmarket.JeansMarket"  name="JeansMarket"  preloader-class="jeansmarket.preloader.JeansMarket_Preloader"/>
+  <update check="always"/>
+</jnlp>

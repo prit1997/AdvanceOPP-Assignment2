@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="478.0" prefWidth="707.0" stylesheets="@../css/file.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeansmarket.JeansMarketController">
+    <children>
+      <VBox layoutX="10.0" layoutY="88.0" prefHeight="201.0" prefWidth="687.0">
+         <children>
+            <TableView fx:id="jeansTable" prefHeight="179.0" prefWidth="647.0">
+              <columns>
+                  <TableColumn fx:id="itemNumberColumn" prefWidth="91.0" text="Item Number" />
+                <TableColumn fx:id="brandNameColumn" prefWidth="150.0" text="Brands" />
+                <TableColumn fx:id="typeColumn" minWidth="4.0" prefWidth="82.0" text="Types" />
+                  <TableColumn fx:id="sizeColumn" prefWidth="62.0" text="Size" />
+                  <TableColumn fx:id="colourColumn" prefWidth="78.0" text="Colour" />
+                  <TableColumn fx:id="priceColumn" prefWidth="114.0" text="Market Price" />
+                  <TableColumn fx:id="soldPriceColumn" prefWidth="109.0" text="Sold Price" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <ImageView fitHeight="118.0" fitWidth="258.0" layoutX="260.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Arvind.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER" layoutX="14.0" layoutY="289.0" prefHeight="26.0" prefWidth="646.0" spacing="100.0">
+         <children>
+            <Button fx:id="createJeans" mnemonicParsing="false" onAction="#createNewJeansButtonPushed" prefHeight="25.0" prefWidth="106.0" text="Create Jeans">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font></Button>
+            <Button fx:id="sellJeans" mnemonicParsing="false" onAction="#sellbuttonPushed" text="Sell Jeans">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font></Button>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>
