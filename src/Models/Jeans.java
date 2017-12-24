@@ -1,9 +1,12 @@
-package jeansmarket;
+package Models;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
@@ -133,4 +136,56 @@ public class Jeans {
     public void setImage(Image image) {
         this.image = image;
     }    //end of getter and setter method
+    
+    
+    /**
+     * This method will write the instance of the User into the database
+     */
+    public void insertIntoDB() throws SQLException
+    {
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        
+        try
+        {
+            //1. Connect to the database
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jeansMarket", "root", "prit1997");
+            
+            //2. Create a String that holds the query with ? as user inputs
+            String sql = "INSERT INTO jeans (brandName, jeanstypes, colour ,price, soldPrice, size, itemNumber)"
+                    + "VALUES (?,?,?,?,?,?,?)";
+                    
+            //3. prepare the query
+            preparedStatement = conn.prepareStatement(sql);
+                   
+            //5. Bind the values to the parameters
+            preparedStatement.setString(1, brandName);
+            preparedStatement.setString(2, types);
+            preparedStatement.setString(3, colour);
+            preparedStatement.setDouble(4, price);
+            preparedStatement.setDouble(5, soldPrice);
+            preparedStatement.setInt(6, size);
+            preparedStatement.setInt(7, itemNumber);
+            
+           
+            
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+        finally
+        {
+            if (preparedStatement != null)
+                preparedStatement.close();
+            
+            if (conn != null)
+                conn.close();
+        }
+    }
+
+    public boolean isAdmin() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 } // end of class

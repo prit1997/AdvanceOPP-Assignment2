@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jeansmarket;
 
+import Models.Jeans;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -68,7 +65,7 @@ public class CreateJeansViewController implements Initializable {
       * @param event
       * @throws IOException 
       */
-     public void createNewJeansButtonPushed(ActionEvent event) throws IOException
+     public void createNewJeansButtonPushed(ActionEvent event) throws IOException, SQLException
     {
         // to get errors in the missing items
         if(itemNumberTextField.getText().isEmpty()) {
@@ -97,7 +94,7 @@ public class CreateJeansViewController implements Initializable {
                                       (Double.parseDouble(soldpriceTextField.getText())),
                                       (Integer.parseInt(sizeTextField.getText())),
                                       (Integer.parseInt(itemNumberTextField.getText())));
-                                      
+            newJean.insertIntoDB();
             jeans.add(newJean);
             changeScene(event, "JeansMarket.fxml");
         }

@@ -19,9 +19,9 @@ public class JeansMarket extends Application {
     //main method to launch Jeans Market
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("JeansMarket.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("NewUserView.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Arvind Jeans Market");
+        stage.setTitle("Login Page");
         stage.setScene(scene);
         stage.show();
     }

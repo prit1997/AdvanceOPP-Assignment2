@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="478.0" prefWidth="707.0" stylesheets="@../css/file.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jeansmarket.NewUserViewController">
+   <children>
+      <Label fx:id="headerLabel" layoutX="213.0" layoutY="14.0" styleClass="header" text="Create New User">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="146.0" layoutY="90.0" prefHeight="275.0" prefWidth="347.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="177.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="167.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="First Name">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Last Name" GridPane.rowIndex="1">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Phone Number" GridPane.rowIndex="2">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Birthday" GridPane.rowIndex="3">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" />
+            <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="phoneTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="birthday" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Password" GridPane.rowIndex="4">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Confirm Password" GridPane.rowIndex="5">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="pwField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <PasswordField fx:id="confirmPwField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="adminLabel" text="Adminstrator" GridPane.rowIndex="6">
+               <font>
+                  <Font name="AR CENA" size="18.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="adminCheckBox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
+      <Button layoutX="192.0" layoutY="412.0" mnemonicParsing="false" onAction="#saveUserButtonPushed" text="Save" />
+      <Button layoutX="398.0" layoutY="412.0" mnemonicParsing="false" onAction="#logoutButtonPushed" text="Logout" />
+      <Button layoutX="293.0" layoutY="412.0" mnemonicParsing="false" onAction="#cancelButtonPushed" text="Cancel" />
+      <Label fx:id="errMsgLabel" layoutX="59.0" layoutY="382.0" text="*error" />
+      <Button layoutX="525.0" layoutY="334.0" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#chooseImageButtonPushed" prefWidth="170.0" text="Change Image" />
+      <ImageView fx:id="imageView" fitHeight="169.0" fitWidth="170.0" layoutX="526.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/defaultuser.png" />
+         </image></ImageView>
+      <ImageView fitHeight="102.0" fitWidth="155.0" layoutX="13.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Arvind.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

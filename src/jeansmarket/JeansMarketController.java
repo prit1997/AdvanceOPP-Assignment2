@@ -5,10 +5,16 @@
  */
 package jeansmarket;
 
+import Models.Jeans;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,14 +73,72 @@ public class JeansMarketController implements Initializable {
         
         try {
             // loading dummy data
-            jeansTable.setItems(getJeans());
-        } catch (IOException ex) {
+             loadJeans();
+           
+        }  catch (SQLException ex) {
             Logger.getLogger(JeansMarketController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }  
     
+   
+    
     /**
-     * this method will create Jeans and Redirect to CreateJeansView.fxml.
+     * This method will load the users from the database and load them into 
+     * the TableView object
+     */
+    public void loadJeans() throws SQLException
+    {
+        ObservableList<Jeans> jeans = FXCollections.observableArrayList();
+        
+        Connection conn = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        
+        try{
+            //1. connect to the database
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jeansMarket?useSSL=false", "root", "prit1997");
+            //2.  create a statement object
+            statement = conn.createStatement();
+            
+            //3.  create the SQL query
+            resultSet = statement.executeQuery("SELECT * FROM jeans");
+            //4.  create user objects from each record
+            while (resultSet.next())
+            {
+                 Jeans newJean = new Jeans(resultSet.getString("brandName"),
+                                                       resultSet.getString("jeanstypes"),
+                                                       resultSet.getString("colour"),
+                                                       resultSet.getDouble("price"),
+                                                       resultSet.getDouble("price"),
+                                                       resultSet.getInt("size"),
+                                                       resultSet.getInt("itemNumber"));
+        
+                System.out.println(newJean);
+                jeans.add(newJean); 
+            }
+            
+            
+            jeansTable.getItems().addAll(jeans);
+            
+        } catch (Exception e)
+        {
+            System.err.println(e);
+        }
+        finally
+        {
+            if (conn != null)
+                conn.close();
+            if(statement != null)
+                statement.close();
+            if(resultSet != null)
+                resultSet.close();
+        }
+    }
+    
+    
+    
+    /**
+     * this method will create Jeans and Redirect to CreateJeansView.
      * @param event
      * @throws IOException 
      */
@@ -122,14 +186,10 @@ public class JeansMarketController implements Initializable {
      * @return
      * @throws IOException 
      */
-    public ObservableList<Jeans> getJeans() throws IOException
+    public ObservableList<Jeans> getJeans() throws IOException, SQLException
     {
         //add jeans to the list
-        jeans.add(new Jeans("Us Polo","Denim","Black",14.20,17.40,5,1001 ));
-        jeans.add(new Jeans("Tommy Hillfigure","Trouser","Blue",16.20,18.20,7,1002));
-        jeans.add(new Jeans("Gap","Formal","Grey",11.20,15.10,6,1003 ));
-        jeans.add(new Jeans("Guess","Chinos","Brown",18.10,17.20,8,1004 ));
-        
+       
         System.out.print(jeans);
         //return the list
         return jeans;
