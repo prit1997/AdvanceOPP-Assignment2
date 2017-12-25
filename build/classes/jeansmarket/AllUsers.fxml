@@ -22,7 +22,7 @@
             <Font name="Arial Black" size="36.0" />
          </font>
       </Label>
-      <TableView fx:id="userTable" layoutX="54.0" layoutY="89.0" onSort="#loadUsers" prefHeight="200.0" prefWidth="600.0">
+      <TableView fx:id="userTable" layoutX="54.0" layoutY="89.0" prefHeight="200.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="userIDColumn" prefWidth="88.0" text="User ID " />
           <TableColumn fx:id="firstNameColumn" prefWidth="119.0" text="First Name" />

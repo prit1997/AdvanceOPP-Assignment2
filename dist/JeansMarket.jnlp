@@ -9,7 +9,7 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="lib\JeansMarket-Preloader.jar" size="3065" download="progress" />
-    <jar href="JeansMarket.jar" size="203502" download="eager" />
+    <jar href="JeansMarket.jar" size="203489" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.45-bin.jar" size="999810" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="JeansMarket" >

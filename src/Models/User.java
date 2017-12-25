@@ -47,11 +47,11 @@ public class User {
         copyImageFile();
     }
 
-    public boolean isAdmin() {
+    public boolean getisAdmin() {
         return admin;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setisAdmin(boolean admin) {
         this.admin = admin;
     }
     
@@ -302,7 +302,7 @@ public class User {
             
             //2.  create a String that holds our SQL update command with ? for user inputs
             String sql = "UPDATE users SET firstName = ?, lastName = ?, "
-                    + "phoneNumber=?, birthday = ?, imageFile = ?, admin = ? "
+                    + "phoneNumber=?, birthday = ?, imageFile = ?, admin = ?"
                     + "WHERE userID = ?";
             
             //3. prepare the query against SQL injection
@@ -319,6 +319,7 @@ public class User {
             preparedStatement.setString(5, imageFile.getName());
             preparedStatement.setBoolean(6, admin);
             preparedStatement.setInt(7, userID);
+            
             
             //6. run the command on the SQL server
             preparedStatement.executeUpdate();

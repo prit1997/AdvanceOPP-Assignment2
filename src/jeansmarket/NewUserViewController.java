@@ -51,7 +51,7 @@ public class NewUserViewController implements Initializable {
     
     private File imageFile;
     private boolean imageFileChanged;
-    private User users;
+    private User use;
     
     //used for the passwords
     @FXML private PasswordField pwField;
@@ -126,22 +126,22 @@ public class NewUserViewController implements Initializable {
     
     public void saveUserButtonPushed(ActionEvent event)
     {
-        if (validPassword() || users != null)
+        if (validPassword() || use != null)
         {
             try
             {
-                if (users != null) //we need to edit/update an existing user
+                if (use != null) //we need to edit/update an existing user
                 {
                     //update the user information
                     updateUser();
-                    users.updateUserInDB();
+                    use.updateUserInDB();
                     
                     //update the password if it changed
                     if (!pwField.getText().isEmpty())
                     {
                         if (validPassword())
                         {
-                            users.changePassword(pwField.getText());
+                            use.changePassword(pwField.getText());
                         }
                     }
                 }
@@ -150,24 +150,25 @@ public class NewUserViewController implements Initializable {
                     
                     if (imageFileChanged) //create a user with a custom image
                     {
-                        System.out.printf("FUCK OFF");
-                        users = new User(firstNameTextField.getText(),lastNameTextField.getText(),
-                                phoneTextField.getText(), birthday.getValue(), imageFile,
-                                adminCheckBox.isSelected(),pwField.getText());
+                        use = new User(firstNameTextField.getText(),lastNameTextField.getText(),
+                        phoneTextField.getText(), birthday.getValue(), imageFile,
+                        adminCheckBox.isSelected(),pwField.getText());
+                        System.out.print("Fuckyou");
                     }
                     else  //create a user with a default image
                     {
-                        users = new User(firstNameTextField.getText(),lastNameTextField.getText(),
+                        System.out.print("Fuck");
+                        use = new User(firstNameTextField.getText(),lastNameTextField.getText(),
                                 phoneTextField.getText(), birthday.getValue(),
                                 pwField.getText(),
                                 adminCheckBox.isSelected());
                     }
                     errMsgLabel.setText("");    //do not show errors if creating user was successful
-                    users.insertIntoDB();    
+                    use.insertIntoDB();    
                 }
 
                 SceneChanger sc = new SceneChanger();
-                sc.changeScenes(event, "AllUses.fxml", "All Users");
+                sc.changeScenes(event, "AllUser.fxml", "All Users");
             }
             catch (Exception e)
             {
@@ -195,14 +196,14 @@ public class NewUserViewController implements Initializable {
      * @param users
      */
     public void preloadData(User usersData) {
-        this.users = usersData;
+        this.use = usersData;
         this.firstNameTextField.setText(usersData.getFirstName());
         this.lastNameTextField.setText(usersData.getLastName());
         this.birthday.setValue(usersData.getBirthday());
         this.phoneTextField.setText(usersData.getPhoneNumber());
         this.headerLabel.setText("Edit User");
         
-        if (usersData.isAdmin())
+        if (usersData.getisAdmin())
             adminCheckBox.setSelected(true);
         
         //load the image 
@@ -224,15 +225,15 @@ public class NewUserViewController implements Initializable {
      */
     public void updateUser() throws IOException
     {
-        users.setFirstName(firstNameTextField.getText());
-        users.setLastName(lastNameTextField.getText());
-        users.setPhoneNumber(phoneTextField.getText());
-        users.setBirthday(birthday.getValue());
-        users.setImageFile(imageFile);
-        users.setAdmin(adminCheckBox.isSelected());
+        use.setFirstName(firstNameTextField.getText());
+        use.setLastName(lastNameTextField.getText());
+        use.setPhoneNumber(phoneTextField.getText());
+        use.setBirthday(birthday.getValue());
+        use.setImageFile(imageFile);
+        use.setisAdmin(adminCheckBox.isSelected());
         
         if (imageFileChanged)
-            users.copyImageFile();
+            use.copyImageFile();
     }
     
     
